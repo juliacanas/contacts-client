@@ -1,4 +1,4 @@
-import { FILTER_BY_LETTER, GET_CONTACTS, GET_CONTACTS_ERROR } from '../../constants';
+import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR } from '../../constants';
 
 export const contactsReducer = (state, action) => {
     switch (action.type) {
@@ -26,7 +26,21 @@ export const contactsReducer = (state, action) => {
                 ...state,
                 filteredContacts: filteredByLetter,
             }
+        case FILTER_BY_NAME:
+            const filtered = state[action.payload.type].filter(element => element.name.toLowerCase().includes(action.payload.name.toLowerCase()));
+            if(action.payload.type === 'contacts') {
+                return {
+                    ...state,
+                    filteredContacts: filtered,
+                }
+            }
+            if(action.payload.type === 'connections') {
+                return {
+                    ...state,
+                    filteredConnections: filtered,
+                }
+            }
         default:
-            break;
+            return state;
     }
 }

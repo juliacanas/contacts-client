@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ContactsContext } from '../../context/contacts/contactsContext';
 
 export default function SearchBar({
     className = '',
     placeholder = 'Search',
     defaultValue = '',
     icon='fas fa-search',
-    onChangeValue
+    type
 }) {
-
-    const [inputValue, setInputValue] = useState(defaultValue)
-
-    useEffect(() => {
-        onChangeValue(inputValue);
-    }, [inputValue]);
-
+    const { filterByName } = useContext(ContactsContext);
 
     return ( //poner styles.algo
         <div className={`search-container ${className}`}>
@@ -21,8 +16,7 @@ export default function SearchBar({
             <input
                 type='text'
                 placeholder={placeholder}
-                onChange={(e) => setInputValue(e.target.value)}
-                value={inputValue}
+                onChange={(e) => filterByName(e.target.value, type)}
                 className='search-input'
             />
         </div>

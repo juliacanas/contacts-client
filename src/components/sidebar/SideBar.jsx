@@ -6,9 +6,8 @@ import SearchBar from '../searchBar/SearchBar';
 import {ContactsContext} from '../../context/contacts/contactsContext';
 
 export default function SideBar() {
-    const { filteredContacts, getContacts, filterByLetter } = useContext(ContactsContext);
+    const { filteredContacts, getContacts, filterByLetter, filterByName } = useContext(ContactsContext);
 
-    const [searchTerm, setSearchTerm] = useState('');
     const [expandedStat, setExpandedStat] = useState(true);
 
     useEffect(() => {
@@ -21,10 +20,7 @@ export default function SideBar() {
             {expandedStat 
                 ? (
                 <>
-                    <SearchBar
-                        className={styles.header}
-                        onChangeValue={value => setSearchTerm(value)}
-                    />
+                    <SearchBar className={styles.header} type='contacts'/>
 
                     <div className={styles.main}>
                         <Alphabet className={styles.filters} action={(letter) => filterByLetter(letter)} />
