@@ -3,6 +3,7 @@ import './index.scss'
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import {AuthState} from './context/auth/authState'
+import {ContactsState} from './context/contacts/contactsState'
 import { tokenAuth } from './config/token';
 import { AnonRoute } from './components/common/AnonRoute';
 import { PrivateRoute } from './components/common/PrivateRoute';
@@ -18,7 +19,9 @@ export const App = () => {
       <AuthState>
         <Switch>
           <AnonRoute exact path='/login' component={LoginPage} />
-          <PrivateRoute exact path='/' component={ContactsPage} />
+          <ContactsState>
+            <PrivateRoute exact path='/' component={ContactsPage} />
+          </ContactsState>
         </Switch>
       </AuthState>
     </Router>
