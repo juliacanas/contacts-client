@@ -11,7 +11,8 @@ export const AuthState = ({ children }) => {
     const initialState = {
         user: localStorage.getItem('userId'),
         token: localStorage.getItem('token'),
-        loading: true
+        loading: true,
+        error: null
     }
 
     const history = useHistory();
@@ -21,7 +22,7 @@ export const AuthState = ({ children }) => {
         login(data)
         .then(res => {
             dispatch({ type: LOGIN_SUCCESS, payload: res});
-            history.push('/contacts');
+            history.push('/');
         })
         .catch(err => {
             dispatch({ type: LOGIN_ERROR, payload: err})
@@ -31,6 +32,7 @@ export const AuthState = ({ children }) => {
     return (
         <AuthContext.Provider
             value={{
+                error: state.error,
                 token: state.token,
                 user: state.token,
                 authenticate

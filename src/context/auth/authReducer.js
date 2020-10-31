@@ -14,12 +14,14 @@ export const authReducer = (state, action) => {
         case LOGIN_ERROR:
             localStorage.removeItem('token');
             localStorage.removeItem('user');
+            console.log(action.payload)
             return {
                 ...state,
                 token: null,
                 user: null,
                 message: action.payload,
                 loading: false,
+                error: 'Este email no esta registrado'
             }
         default:
             return state;

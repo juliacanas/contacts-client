@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.scss'
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import {AuthState} from './context/auth/authState'

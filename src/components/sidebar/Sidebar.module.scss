@@ -1,0 +1,30 @@
+.sidebar {
+    width: 30%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    i {
+        position: absolute;
+    }
+    .header {
+        height: 50px;
+    }
+    .main {
+        display: flex;
+        flex-grow: 1;
+        .filters {
+            width: 50px;
+        }
+        .list {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            .contacts {
+                flex-grow: 1;
+            }
+            .pagination {
+                height: 50px;
+            }
+        }
+    }
+}
