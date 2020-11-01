@@ -1,5 +1,5 @@
 .sidebar {
-    width: 30%;
+    width: 260px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -18,19 +18,23 @@
     }
     .main {
         display: flex;
-        flex-grow: 1;
+        height: calc(100vh - 100px);
         .filters {
-            width: 50px;
+            width: 60px;
         }
         .list {
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            width: calc(260px - 60px);
             .contacts {
-                flex-grow: 1;
+                overflow-y: overlay;
+                height: -webkit-fill-available;
             }
             .pagination {
-                height: 50px;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

@@ -6,13 +6,16 @@ import SearchBar from '../searchBar/SearchBar';
 import {ContactsContext} from '../../context/contacts/contactsContext';
 
 export default function SideBar() {
-    const { filteredContacts, getContacts, filterByLetter, filterByName } = useContext(ContactsContext);
+    const { filteredContacts, contactsPages, contactsCurrentPage, getContacts, filterByLetter, getCurrentContact } = useContext(ContactsContext);
 
     const [expandedStat, setExpandedStat] = useState(true);
 
     useEffect(() => {
         getContacts()
     }, []);
+
+    const startIndex = (contactsCurrentPage - 1) * 50;
+    const contactsPaginated = filteredContacts?.slice(startIndex, startIndex + 50)
 
     return (
         <section className={styles.sidebar} data-expanded={expandedStat}>
@@ -26,13 +29,25 @@ export default function SideBar() {
                         <Alphabet className={styles.filters} action={(letter) => filterByLetter(letter)} />
                         <div className={styles.list}>
                             <div className={styles.contacts}>
-                                {filteredContacts
+                                {contactsPaginated
                                     ?
-                                    filteredContacts.map(contact => <p key={`CONTACT_${contact.id}`} >{contact.name}</p>)
+                                    contactsPaginated.map(contact => (
+                                    <p 
+                                        key={`CONTACT_${contact.id}`}
+                                        onClick={() => getCurrentContact(contact.id)}
+                                    >
+                                        {contact.name}
+                                    </p>
+                                    ))
                                     : <p> No results</p>
                                 }                       
                             </div>
-                            <Pagination className={styles.pagination} />
+                            <Pagination 
+                                className={styles.pagination}
+                                type='contactsCurrentPage'
+                                pages={contactsPages}
+                                currentPage={contactsCurrentPage}
+                            />
                         </div>
                     </div>
                 </>

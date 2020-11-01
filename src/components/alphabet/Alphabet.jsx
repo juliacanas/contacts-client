@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import styles from './Alphabet.module.scss';
 
 export default function Alphabet({
     className,
@@ -13,7 +14,7 @@ export default function Alphabet({
     }, [letterSelected])
 
     return (
-        <section className={className}>
+        <section className={`${className} ${styles.alphabet}`}>
             {alphabet.split('').map(letter => (
                 <p 
                     key={`LETTER_${letter}`} 

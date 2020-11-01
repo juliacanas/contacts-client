@@ -1,3 +1,44 @@
 .connections {
-    flex-grow: 1;
+    width: calc(100vw - 260px);
+    padding: 0 50px;
+    .header  {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        .connectionName {
+            display: flex;
+            align-items: center;
+            img {
+                border-radius: 50%;
+                width: 60px;
+                margin-right: 20px;
+            }
+        }
+    }
+    .description {
+        padding: 20px 0;
+        height: 100px;
+        .links i {
+            font-size: 20px;
+            margin: 10px 25px 0 0;
+        }
+    }
+    .list {
+        height: 55vh;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 20px;
+        overflow-y: overlay;
+        .connection {
+            display: inline-block;
+            width: 100px;
+            img {
+                width: 100px;
+            }
+        }
+    }
+    .pagination {
+        height: 100px;
+    }
 }

@@ -1,4 +1,4 @@
-import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR } from '../../constants';
+import { ADD_BREADCRUMB_CONTACT, FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION } from '../../constants';
 
 export const contactsReducer = (state, action) => {
     switch (action.type) {
@@ -8,6 +8,7 @@ export const contactsReducer = (state, action) => {
                 ...state,
                 contacts: orderedContacts,
                 filteredContacts: orderedContacts,
+                contactsPages: Math.ceil(action.payload.length / 50)
             }
         case GET_CONTACTS_ERROR:
             return {
@@ -25,6 +26,8 @@ export const contactsReducer = (state, action) => {
             return {
                 ...state,
                 filteredContacts: filteredByLetter,
+                contactsPages: Math.ceil(filteredByLetter?.length / 50) || 1,
+                contactsCurrentPage: 1,
             }
         case FILTER_BY_NAME:
             const filtered = state[action.payload.type].filter(element => element.name.toLowerCase().includes(action.payload.name.toLowerCase()));
@@ -32,12 +35,41 @@ export const contactsReducer = (state, action) => {
                 return {
                     ...state,
                     filteredContacts: filtered,
+                    contactsPages: Math.ceil(filtered.length / 50) || 1,
                 }
             }
             if(action.payload.type === 'connections') {
                 return {
                     ...state,
                     filteredConnections: filtered,
+                    connectionsPages: Math.ceil(filtered.length / 20) || 1,
+                }
+            }
+        // eslint-disable-next-line no-fallthrough
+        case GET_CURRENT_CONTACT:
+            const currentContact = state.contacts.find(contact => contact.id === action.payload);
+            const connections = currentContact.connections.map(connection => state.contacts.find(contact => contact.id === connection)); // mejor un reduce
+            const orderedConnections = connections.sort((a, b) => (a.name > b.name ? 1 : -1))
+            return {
+                ...state,
+                currentContact,
+                connections: orderedConnections,
+                filteredConnections: orderedConnections,
+                connectionsPages: Math.ceil(connections.length / 20)
+            }
+
+        case SET_PAGINATION:
+            const { next, type, pages } = action.payload;
+            if(next && state[type] < pages) {
+                return {
+                    ...state,
+                    [type]: state[type] + 1,
+                }
+            }
+            if (!next && state[type] > 1) {
+                return {
+                    ...state,
+                    [type]: state[type] - 1,
                 }
             }
         default:

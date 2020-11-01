@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { ContactsContext } from '../../context/contacts/contactsContext';
+import styles from './SearchBar.scss'
 
 export default function SearchBar({
     className = '',
     placeholder = 'Search',
-    defaultValue = '',
     icon='fas fa-search',
     type
 }) {
