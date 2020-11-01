@@ -9,10 +9,17 @@ import Pagination from '../pagination/Pagination';
 
 export default function ConnectionsSection() {
 
-    const { currentContact, currentConnection, filteredConnections, connectionsPages, connectionsCurrentPage, setCurrentConnection } = useContext(ContactsContext);
+    const { breadcrumb, currentContact, currentConnection, filteredConnections, connectionsPages, connectionsCurrentPage, setCurrentConnection } = useContext(ContactsContext);
 
     const startIndex = (connectionsCurrentPage - 1) * 20;
     const connectionsPaginated = filteredConnections?.slice(startIndex, startIndex + 20)
+
+    const handleClick = (connectionId) => {
+        const alreadyClicked = breadcrumb.find(el => el.id === connectionId)
+        if(!alreadyClicked) {
+            setCurrentConnection(connectionId)
+        }
+    }
 
     return (
         <section className={styles.connections}>
@@ -37,7 +44,7 @@ export default function ConnectionsSection() {
                         <BreadCrumb />
                         <div className={styles.list}>
                             {connectionsPaginated?.map(connection => (
-                                <div key={`CONNECTION_${connection.id}`} className={styles.connection} onClick={() => setCurrentConnection(connection.id)}>
+                                <div key={`CONNECTION_${connection.id}`} className={styles.connection} onClick={() => handleClick(connection.id)}>
                                     <Image fallbackUrl={avatar} imageUrl={connection.avatar}/>
                                     <h4>{connection.name}</h4>
                                 </div>

@@ -48,12 +48,7 @@ export const contactsReducer = (state, action) => {
         // eslint-disable-next-line no-fallthrough
         case GET_CURRENT_CONTACT:
             const currentContact = state.contacts.find(contact => contact.id === action.payload);
-/*             const getConnections = () => {
-                if(state.currentConnection) {
-
-                }
-            } */
-            const connections = currentContact.connections.map(connection => state.contacts.find(contact => contact.id === connection)); // mejor un reduce
+            const connections = currentContact.connections.map(connection => state.contacts.find(contact => contact.id === connection));
             const orderedConnections = connections.sort((a, b) => (a.name > b.name ? 1 : -1))
             const breadcrumbInit = [currentContact];
             return {
@@ -81,11 +76,14 @@ export const contactsReducer = (state, action) => {
             }
         // eslint-disable-next-line no-fallthrough
         case SET_CURRENT_CONNECTION:
-            const currentConnection = state.connections.find(connection => connection.id === action.payload);
+            const currentConnection = state.contacts.find(contact => contact.id === action.payload);
+            const newConnections = currentConnection.connections.map(connection => state.contacts.find(contact => contact.id === connection)).sort((a, b) => (a.name > b.name ? 1 : -1));
+            /* const newBreadcrumb = state.breadcrumb.slice() */
             return {
                 ...state,
                 currentConnection,
-                breadcrumb: [...state.breadcrumb, currentConnection]
+                breadcrumb: [...state.breadcrumb, currentConnection],
+                filteredConnections: newConnections
             }
         default:
             return state;
