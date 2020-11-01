@@ -78,11 +78,18 @@ export const contactsReducer = (state, action) => {
         case SET_CURRENT_CONNECTION:
             const currentConnection = state.contacts.find(contact => contact.id === action.payload);
             const newConnections = currentConnection.connections.map(connection => state.contacts.find(contact => contact.id === connection)).sort((a, b) => (a.name > b.name ? 1 : -1));
-            /* const newBreadcrumb = state.breadcrumb.slice() */
+
+            const contactIndex = state.breadcrumb.findIndex(el => el.id === action.payload);
+            let newBreadcrumb = [];
+            if(contactIndex !== -1) {
+                newBreadcrumb = state.breadcrumb.slice(0, contactIndex + 1)
+            } else {
+                newBreadcrumb = [...state.breadcrumb, currentConnection]
+            }
             return {
                 ...state,
                 currentConnection,
-                breadcrumb: [...state.breadcrumb, currentConnection],
+                breadcrumb: newBreadcrumb,
                 filteredConnections: newConnections
             }
         default:
