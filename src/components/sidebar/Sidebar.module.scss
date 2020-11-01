@@ -1,40 +1,46 @@
 .sidebar {
     width: 260px;
     position: relative;
-    display: flex;
-    flex-direction: column;
     &[data-expanded="false"] {
         width: 60px;
+        .filters {
+            margin-top: 30px;
+        }
     }
     .arrow {
         cursor: pointer;
         position: absolute;
         right: 0;
-        top: 25px;
+        top: 15px;
         transform: translate(50%,-50%);
     }
     .header {
-        height: 50px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .main {
         display: flex;
-        height: calc(100vh - 100px);
+        height: calc(100vh - 80px);
         .filters {
             width: 60px;
         }
         .list {
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             width: calc(260px - 60px);
             .contacts {
                 overflow-y: overlay;
-                height: -webkit-fill-available;
-            }
-            .pagination {
-                height: 100px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                font-size: 14px;
+                margin-top: 8px;
+                p {
+                    cursor: pointer;
+                    &[data-active='true'] {
+                        color: red;
+                    }
+                }
             }
         }
     }

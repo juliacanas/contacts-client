@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import {contactsReducer} from './contactsReducer';
 import {ContactsContext} from './contactsContext';
 import { getAll } from '../../api/contacts.api';
-import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION } from '../../constants';
+import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
 
 export const ContactsState = ({ children }) => {
     const initialState = {
@@ -15,6 +15,8 @@ export const ContactsState = ({ children }) => {
         contactsCurrentPage: 1,
         connectionsPages: null,
         connectionsCurrentPage: 1,
+        currentConnection: null,
+        breadcrumb: [],
     }
 
     const [ state, dispatch ] = useReducer(contactsReducer, initialState);
@@ -69,6 +71,15 @@ export const ContactsState = ({ children }) => {
             }
         })
     }
+
+    const setCurrentConnection = (connectionId) => {
+        dispatch({
+            type: SET_CURRENT_CONNECTION,
+            payload: connectionId
+        })
+    }
+    
+
     return (
         <ContactsContext.Provider
             value={{
@@ -81,6 +92,9 @@ export const ContactsState = ({ children }) => {
                 contactsCurrentPage: state.contactsCurrentPage,
                 connectionsPages: state.connectionsPages,
                 connectionsCurrentPage: state.connectionsCurrentPage,
+                breadcrumb: state.breadcrumb,
+                currentConnection: state.currentConnection,
+                setCurrentConnection,
                 getContacts,
                 filterByLetter,
                 filterByName,

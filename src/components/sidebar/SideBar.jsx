@@ -4,9 +4,11 @@ import Alphabet from '../alphabet/Alphabet';
 import Pagination from '../pagination/Pagination';
 import SearchBar from '../searchBar/SearchBar';
 import {ContactsContext} from '../../context/contacts/contactsContext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 export default function SideBar() {
-    const { filteredContacts, contactsPages, contactsCurrentPage, getContacts, filterByLetter, getCurrentContact } = useContext(ContactsContext);
+    const { currentContact, filteredContacts, contactsPages, contactsCurrentPage, getContacts, filterByLetter, getCurrentContact } = useContext(ContactsContext);
 
     const [expandedStat, setExpandedStat] = useState(true);
 
@@ -35,6 +37,7 @@ export default function SideBar() {
                                     <p 
                                         key={`CONTACT_${contact.id}`}
                                         onClick={() => getCurrentContact(contact.id)}
+                                        data-active={contact.id === currentContact?.id}
                                     >
                                         {contact.name}
                                     </p>
@@ -43,7 +46,6 @@ export default function SideBar() {
                                 }                       
                             </div>
                             <Pagination 
-                                className={styles.pagination}
                                 type='contactsCurrentPage'
                                 pages={contactsPages}
                                 currentPage={contactsCurrentPage}
@@ -57,8 +59,8 @@ export default function SideBar() {
 
             <div className={styles.arrow} onClick={() => setExpandedStat(!expandedStat)}>
                 {expandedStat
-                    ? <i className='fas fa-chevron-circle-left' />
-                    : <i className='fas fa-chevron-circle-right' />
+                    ? <NavigateBeforeIcon />
+                    : <NavigateNextIcon />
                 }
             </div>
 

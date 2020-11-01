@@ -2,6 +2,7 @@ import React from 'react';
 import ConnectionsSection from '../../components/connections/ConnectionsSection';
 import SideBar from '../../components/sidebar/SideBar';
 import styles from './ContactsPage.module.scss';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export default function ContactsPage() {
     return (
@@ -10,7 +11,7 @@ export default function ContactsPage() {
                 <h1>Contacts Tool</h1>
                 <div className={styles.profile}>
                     <p>USERNAME</p>
-                    <i className='fa fa-user-circle' />
+                    <AccountCircleIcon />
                 </div>
             </section>
 

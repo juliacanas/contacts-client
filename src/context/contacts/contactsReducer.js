@@ -1,9 +1,9 @@
-import { ADD_BREADCRUMB_CONTACT, FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION } from '../../constants';
+import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
 
 export const contactsReducer = (state, action) => {
     switch (action.type) {
         case GET_CONTACTS:
-            const orderedContacts = action.payload.sort((a, b) => (a.name > b.name ? 1 : -1))
+            const orderedContacts = action.payload.sort((a, b) => (a.name > b.name ? 1 : -1));
             return {
                 ...state,
                 contacts: orderedContacts,
@@ -48,14 +48,21 @@ export const contactsReducer = (state, action) => {
         // eslint-disable-next-line no-fallthrough
         case GET_CURRENT_CONTACT:
             const currentContact = state.contacts.find(contact => contact.id === action.payload);
+/*             const getConnections = () => {
+                if(state.currentConnection) {
+
+                }
+            } */
             const connections = currentContact.connections.map(connection => state.contacts.find(contact => contact.id === connection)); // mejor un reduce
             const orderedConnections = connections.sort((a, b) => (a.name > b.name ? 1 : -1))
+            const breadcrumbInit = [currentContact];
             return {
                 ...state,
                 currentContact,
                 connections: orderedConnections,
                 filteredConnections: orderedConnections,
-                connectionsPages: Math.ceil(connections.length / 20)
+                connectionsPages: Math.ceil(connections.length / 20),
+                breadcrumb: breadcrumbInit
             }
 
         case SET_PAGINATION:
@@ -71,6 +78,14 @@ export const contactsReducer = (state, action) => {
                     ...state,
                     [type]: state[type] - 1,
                 }
+            }
+        // eslint-disable-next-line no-fallthrough
+        case SET_CURRENT_CONNECTION:
+            const currentConnection = state.connections.find(connection => connection.id === action.payload);
+            return {
+                ...state,
+                currentConnection,
+                breadcrumb: [...state.breadcrumb, currentConnection]
             }
         default:
             return state;

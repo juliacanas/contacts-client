@@ -9,11 +9,7 @@ import Pagination from '../pagination/Pagination';
 
 export default function ConnectionsSection() {
 
-    const { currentContact, filteredConnections, connectionsPages, connectionsCurrentPage, getCurrentContact } = useContext(ContactsContext);
-
-    const handleClick = (id) => {
-        getCurrentContact(id);
-    }
+    const { currentContact, currentConnection, filteredConnections, connectionsPages, connectionsCurrentPage, setCurrentConnection } = useContext(ContactsContext);
 
     const startIndex = (connectionsCurrentPage - 1) * 20;
     const connectionsPaginated = filteredConnections?.slice(startIndex, startIndex + 20)
@@ -21,17 +17,17 @@ export default function ConnectionsSection() {
     return (
         <section className={styles.connections}>
             {
-                currentContact ? (
+                currentContact || currentConnection ? (
                     <>
                         <div className={styles.header}>
                             <div className={styles.connectionName}>
-                                <Image fallbackUrl={avatar} imageUrl={currentContact.avatar}/>
-                                <h1>{currentContact.name}</h1>
+                                <Image fallbackUrl={avatar} imageUrl={currentConnection ? currentConnection.avatar : currentContact.avatar}/>
+                                <h1>{currentConnection ? currentConnection.name : currentContact.name}</h1>
                             </div>
                             <SearchBar type='connections' className={styles.searchbar} />
                         </div>
                         <div className={styles.description}>
-                            <p>{currentContact.description}</p>
+                            <p>{currentConnection ? currentConnection.description : currentContact.description}</p>
                             <div className={styles.links}>
                                 <a href='https://www.facebook.com/'><i className='fab fa-facebook-square' /></a>
                                 <a href='https://www.linkedin.com/'><i className='fab fa-linkedin'/></a>
@@ -41,20 +37,19 @@ export default function ConnectionsSection() {
                         <BreadCrumb />
                         <div className={styles.list}>
                             {connectionsPaginated?.map(connection => (
-                                <div key={`CONNECTION_${connection.id}`} className={styles.connection} onClick={() => handleClick(connection.id)}>
+                                <div key={`CONNECTION_${connection.id}`} className={styles.connection} onClick={() => setCurrentConnection(connection.id)}>
                                     <Image fallbackUrl={avatar} imageUrl={connection.avatar}/>
-                                    <h3>{connection.name}</h3>
+                                    <h4>{connection.name}</h4>
                                 </div>
                             ))}
                         </div>
                         <Pagination 
-                            className={styles.pagination}
                             type='connectionsCurrentPage'
                             pages={connectionsPages}
                             currentPage={connectionsCurrentPage}
                         />
                     </>
-                ) : <p>Select a Contact</p>
+                ) : <p className={styles.noResults}>No contact selected</p>
             }
 
         </section>

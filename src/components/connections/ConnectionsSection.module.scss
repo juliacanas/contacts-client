@@ -1,6 +1,16 @@
 .connections {
-    width: calc(100vw - 260px);
-    padding: 0 50px;
+    flex-grow: 1;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .noResults {
+        color: gray;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
     .header  {
         display: flex;
         align-items: center;
@@ -17,7 +27,6 @@
         }
     }
     .description {
-        padding: 20px 0;
         height: 100px;
         .links i {
             font-size: 20px;
@@ -25,20 +34,20 @@
         }
     }
     .list {
-        height: 55vh;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
         grid-gap: 20px;
         overflow-y: overlay;
         .connection {
-            display: inline-block;
-            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             img {
                 width: 100px;
+                border-radius: 50%;
             }
         }
-    }
-    .pagination {
-        height: 100px;
     }
 }
