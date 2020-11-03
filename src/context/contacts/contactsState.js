@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import {contactsReducer} from './contactsReducer';
 import {ContactsContext} from './contactsContext';
 import { getAll } from '../../api/contacts.api';
@@ -18,12 +18,12 @@ export const ContactsState = ({ children }) => {
         currentConnection: null,
         breadcrumb: [],
     }
-
     const [ state, dispatch ] = useReducer(contactsReducer, initialState);
 
     const getContacts = (token) => {
         getAll(token)
             .then(res => {
+                console.log(res)
                 dispatch({
                     type: GET_CONTACTS,
                     payload: res,

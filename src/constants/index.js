@@ -1,5 +1,6 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCES';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const GET_NEW_TOKEN = 'GET_NEW_TOKEN';
 
 export const GET_CONTACTS = 'GET_CONTACTS';
 export const GET_CONTACTS_ERROR = 'GET_CONTACTS_ERROR';

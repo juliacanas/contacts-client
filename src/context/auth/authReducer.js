@@ -3,25 +3,30 @@ import { LOGIN_SUCCESS, LOGIN_ERROR } from '../../constants/index';
 export const authReducer = (state, action) => {
     switch(action.type) {
         case LOGIN_SUCCESS:
+            const parseJwt = JSON.parse(atob(action.payload.token.split('.')[1]))
+            const user = {userId: parseJwt.userId, userName: parseJwt.userName}
             localStorage.setItem('token', action.payload.token);
-            localStorage.setItem('user', action.payload.user);
+            localStorage.setItem('user', user);
+            localStorage.setItem('refreshToken', action.payload.refreshToken)
             return {
                 ...state,
                 token: action.payload.token,
-                user: action.payload.user,
+                refToken: action.payload.refreshToken,
+                user: user,
                 loading: false
             }
         case LOGIN_ERROR:
             localStorage.removeItem('token');
             localStorage.removeItem('user');
+            localStorage.removeItem('refreshToken')
             return {
                 ...state,
                 token: null,
+                refToken: null,
                 user: null,
-                message: action.payload,
                 loading: false,
-                error: 'Este email no esta registrado'
             }
+
         default:
             return state;
     }
