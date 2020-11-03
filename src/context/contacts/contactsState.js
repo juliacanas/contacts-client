@@ -21,8 +21,8 @@ export const ContactsState = ({ children }) => {
 
     const [ state, dispatch ] = useReducer(contactsReducer, initialState);
 
-    const getContacts = () => {
-        getAll()
+    const getContacts = (token) => {
+        getAll(token)
             .then(res => {
                 dispatch({
                     type: GET_CONTACTS,

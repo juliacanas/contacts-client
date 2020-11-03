@@ -9,21 +9,10 @@ import Pagination from '../pagination/Pagination';
 
 export default function ConnectionsSection() {
 
-    const { breadcrumb, currentContact, currentConnection, filteredConnections, connectionsPages, connectionsCurrentPage, setCurrentConnection } = useContext(ContactsContext);
+    const { currentContact, currentConnection, filteredConnections, connectionsPages, connectionsCurrentPage, setCurrentConnection } = useContext(ContactsContext);
 
     const startIndex = (connectionsCurrentPage - 1) * 20;
     const connectionsPaginated = filteredConnections?.slice(startIndex, startIndex + 20)
-
-
-    // click en connection de la list. Si la connection ya esta en el breadcrumb NO hace nada (como si estuviera disabled).
-    // si no esta, el click hace el setCurrentConnection. que lo que hace es setar las filteredConnections con las nuevas connections de este contacto. 
-    // y comprueba 
-/*     const handleClick = (connectionId) => {
-        const alreadyClicked = breadcrumb.find(el => el.id === connectionId)
-        if(!alreadyClicked) {
-            setCurrentConnection(connectionId)
-        }
-    } */
 
     return (
         <section className={styles.connections}>

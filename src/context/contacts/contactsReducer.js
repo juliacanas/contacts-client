@@ -57,6 +57,7 @@ export const contactsReducer = (state, action) => {
                 connections: orderedConnections,
                 filteredConnections: orderedConnections,
                 connectionsPages: Math.ceil(connections.length / 20),
+                currentConnection: null,
                 breadcrumb: breadcrumbInit
             }
 

@@ -9,7 +9,7 @@ import { LOGIN_ERROR, LOGIN_SUCCESS } from '../../constants';
 export const AuthState = ({ children }) => {
 
     const initialState = {
-        user: localStorage.getItem('userId'),
+        user: localStorage.getItem('user'),
         token: localStorage.getItem('token'),
         loading: true,
         error: null

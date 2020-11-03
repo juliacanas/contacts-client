@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 
 import { AuthContext } from '../../context/auth/authContext';
+import styles from './Login.module.scss';
+import backgroundImage from '../../assets/dan-cristian-padure-Ieq6iLAH-xA-unsplash.jpg'
 
 export default function LoginPage() {
     const { register, handleSubmit, errors } = useForm();
@@ -11,8 +13,11 @@ export default function LoginPage() {
         authenticate(data)
     };
     return (
-        <div>
-            <section />
+        <div className={styles.container}>
+            <section style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover", width: '60vw'}}/>
+
             <section>
                 <h1>Contacts App</h1>
                 <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete='off'>

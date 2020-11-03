@@ -13,7 +13,7 @@ export default function SideBar() {
     const [expandedStat, setExpandedStat] = useState(true);
 
     useEffect(() => {
-        getContacts()
+        getContacts(localStorage.getItem('token'))
     }, []);
 
     const startIndex = (contactsCurrentPage - 1) * 50;
