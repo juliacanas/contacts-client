@@ -1,6 +1,8 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCES';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const GET_NEW_TOKEN = 'GET_NEW_TOKEN';
+export const LOGOUT_USER = 'LOGOUT_USER';
+
 
 export const GET_CONTACTS = 'GET_CONTACTS';
 export const GET_CONTACTS_ERROR = 'GET_CONTACTS_ERROR';
@@ -9,6 +11,8 @@ export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const GET_CURRENT_CONTACT = 'GET_CURRENT_CONTACT';
 export const SET_PAGINATION = 'SET_PAGINATION';
 export const SET_CURRENT_CONNECTION = 'SET_CURRENT_CONNECTION';
+
+
 
 
 

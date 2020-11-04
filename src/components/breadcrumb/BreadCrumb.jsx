@@ -5,7 +5,6 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 export default function BreadCrumb() {
     const { breadcrumb, currentConnection, setCurrentConnection } = useContext(ContactsContext);
-
     return (
         <section className={styles.breadcrumb}>
             {breadcrumb.length !== 0 && (

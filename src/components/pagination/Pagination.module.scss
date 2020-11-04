@@ -1,8 +1,17 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
+
 .pagination {
     margin-top: 10px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid gray;
+    border-top: 1px solid $purpleyGrey;
+    font-weight: bold;
 }

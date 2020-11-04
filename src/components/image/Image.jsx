@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Image.module.scss';
 
 export default function Image({
@@ -9,12 +9,23 @@ export default function Image({
 }) {
 
     const [errored, setErrored] = useState(false);
+    const [src, setSrc] = useState(imageUrl)
+
+    useEffect(() => {
+        setSrc(imageUrl)
+        setErrored(false)
+    }, [imageUrl])
+
+    const onError = () => {
+        setErrored(true)
+        setSrc(fallbackUrl)
+    }
 
     return (
         <div className={styles.imageContainer}>
             <img
-                src={errored ? fallbackUrl : imageUrl}
-                onError={() => setErrored(true)}
+                src={src}
+                onError={onError}
                 alt={alt}
             />
             { extraContent && extraContent()}

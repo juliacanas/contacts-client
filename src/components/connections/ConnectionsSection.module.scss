@@ -1,39 +1,59 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
 .connections {
     flex-grow: 1;
-    padding: 0 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: $lightBlack;
     .noResults {
-        color: gray;
+        color: $purpleyGrey;
         font-size: 30px;
         font-weight: bold;
         text-align: center;
         margin-top: 50px;
     }
-    .header  {
+    .containerHeader {
+        height: 220px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 80px;
-        .connectionName {
+        flex-direction: column;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+
+        .header  {
             display: flex;
             align-items: center;
-            img {
-                border-radius: 50%;
-                width: 60px;
-                margin-right: 20px;
+            justify-content: space-between;
+            height: 100px;
+            
+            padding: 0 30px;
+            .connectionName {
+                display: flex;
+                align-items: center;
+                img {
+                    border-radius: 50%;
+                    width: 60px;
+                    margin-right: 20px;
+                }
+            }
+        }
+        .description {
+            height: 100px;
+            padding: 0 30px;
+            .links {
+                margin: 10px 0;
+                .MuiSvgIcon-root {
+                    font-size: 30px;
+                }
             }
         }
     }
-    .description {
-        height: 100px;
-        .links i {
-            font-size: 20px;
-            margin: 10px 25px 0 0;
-        }
-    }
     .list {
+        padding: 5px 30px;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(4, 1fr);
@@ -44,10 +64,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 5px 0;
             img {
-                width: 100px;
+                width: 80px;
                 border-radius: 50%;
             }
         }
+    }
+    .pagination {
+        padding: 0 30px;
     }
 }

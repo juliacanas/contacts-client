@@ -6,10 +6,11 @@ import SearchBar from '../searchBar/SearchBar';
 import {ContactsContext} from '../../context/contacts/contactsContext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { AuthContext } from '../../context/auth/authContext';
 
 export default function SideBar() {
     const { currentContact, filteredContacts, contactsPages, contactsCurrentPage, getContacts, filterByLetter, getCurrentContact } = useContext(ContactsContext);
-
+    const { token } = useContext(AuthContext)
     const [expandedStat, setExpandedStat] = useState(true);
 
     useEffect(() => {
@@ -57,12 +58,10 @@ export default function SideBar() {
                 : <Alphabet className={styles.filters} action={(letter) => filterByLetter(letter)} />
             }
 
-            <div className={styles.arrow} onClick={() => setExpandedStat(!expandedStat)}>
                 {expandedStat
-                    ? <NavigateBeforeIcon />
-                    : <NavigateNextIcon />
+                    ? <NavigateBeforeIcon className={styles.arrow} onClick={() => setExpandedStat(!expandedStat)}/>
+                    : <NavigateNextIcon className={styles.arrow} onClick={() => setExpandedStat(!expandedStat)}/>
                 }
-            </div>
 
         </section>
     )

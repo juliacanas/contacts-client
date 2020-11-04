@@ -1,0 +1,62 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+$lightGreen: #91c062;
+
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    .login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        border-left: 1px solid #D68D63;
+        .form {
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0;
+            width: 70%;
+            .input {
+                width: 100%;
+                margin-top: 15px;
+                font-size: 14px;
+                height: 30px;
+                padding: 0 10px;
+                outline: none !important;
+            }
+            .checkbox {
+                margin-top: 15px;
+                input {
+                    margin-right: 10px;
+                }
+            }
+            button {
+                display: block;
+                height: 30px;
+                background-color: white;
+                color: #4E5661;
+                margin-top: 20px;
+                border-radius: 10px;
+                border: unset;
+                font-size: 14px;
+                width: 100px;
+                border: 1px solid #D68D63;
+                outline: none !important;
+                &:hover {
+                    background-color: #D68D63;
+                    color: $lightGrey;
+                }
+            }
+        }
+        .error {
+            color: #E76A60;
+        }
+    } 
+}

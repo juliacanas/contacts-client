@@ -1,4 +1,24 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
 .breadcrumb {
     display: flex;
     align-items: center;
+    background-color: $coral;
+    color: $lightGrey;
+    border-radius: 5px;
+    line-height: 30px;
+    padding: 0 15px;
+    margin: 10px 30px;
+    p {
+        cursor: pointer;
+        &[data-active='false'] {
+            font-weight: bold;
+            cursor: unset;
+        }
+    }
 }

@@ -3,16 +3,15 @@ import { useHistory } from 'react-router-dom';
 
 import {AuthContext} from './authContext';
 import {authReducer} from './authReducer';
-import { login, refreshToken } from '../../api/auth.api';
-import { LOGIN_ERROR, LOGIN_SUCCESS } from '../../constants';
+import { login } from '../../api/auth.api';
+import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_USER } from '../../constants';
 
 export const AuthState = ({ children }) => {
 
     const initialState = {
-        user: localStorage.getItem('user'), // evita que cuando hago refresh pierda el token
+        user: localStorage.getItem('user'), 
         token: localStorage.getItem('token'),
         refToken: localStorage.getItem('refreshToken'),
-        loading: true,
         error: null
     }
 
@@ -30,7 +29,13 @@ export const AuthState = ({ children }) => {
         })
     }
 
-    const getNewToken = () => {
+    const logout = () => {
+        dispatch({
+            type: LOGOUT_USER
+        })
+    }
+
+/*     const getNewToken = () => {
         refreshToken(state.refToken)
             .then(res => {
                 dispatch({
@@ -38,7 +43,7 @@ export const AuthState = ({ children }) => {
                     payload: res,
                 })
             })
-    }
+    } */
 
     return (
         <AuthContext.Provider
@@ -48,7 +53,7 @@ export const AuthState = ({ children }) => {
                 token: state.token,
                 user: state.user,
                 authenticate,
-                getNewToken
+                logout,
             }}
         >
             {children}

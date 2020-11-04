@@ -1,10 +1,25 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
 .alphabet {
     text-align: center;
-    line-height: 30px;
+    line-height: 28px;
     p {
-        width: 30px;
-        margin: 2px auto;
+        width: 28px;
+        margin: 3px auto;
         border-radius: 5px;
         cursor: pointer;
+        background-color: $darkGrey;
+        font-weight: bold;
+        color: $coral;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        &[data-active='true'], &:hover {
+            background-color: $coral;
+            color: $darkGrey;
+        }
     }
 }

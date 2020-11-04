@@ -1,0 +1,31 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
+.container {
+    .userSection {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        p {
+            margin-right: 10px;
+        }
+    }
+    .options {
+        z-index: 100;
+        background-color: $darkGrey;
+        position: absolute;
+        right: 0;
+        top: 50px;
+        width: 160px;
+        border-radius: 0 0 5px 5px;
+        p {
+            padding-left: 20px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+    }
+}

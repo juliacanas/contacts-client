@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR } from '../../constants/index';
+import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_USER } from '../../constants/index';
 
 export const authReducer = (state, action) => {
     switch(action.type) {
@@ -26,7 +26,16 @@ export const authReducer = (state, action) => {
                 user: null,
                 loading: false,
             }
-
+        case LOGOUT_USER:
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken')
+            return {
+                ...state,
+                token: null,
+                refToken: null,
+                user: null,
+                loading: false,
+            }
         default:
             return state;
     }

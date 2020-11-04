@@ -1,6 +1,15 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
 .sidebar {
-    width: 260px;
+    width: 280px;
     position: relative;
+    background-color: $lightGrey;
+    color: $lightBlack;
     &[data-expanded="false"] {
         width: 60px;
         .filters {
@@ -13,32 +22,40 @@
         right: 0;
         top: 15px;
         transform: translate(50%,-50%);
+        background-color: $coral;
+        border-radius: 50px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        color: $darkGrey;
     }
     .header {
         height: 30px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        margin-left: 16px;
     }
     .main {
         display: flex;
         height: calc(100vh - 80px);
         .filters {
             width: 60px;
+            padding-top: 8px;
         }
         .list {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: calc(260px - 60px);
+            width: calc(280px - 60px);
+            padding-right: 30px;
             .contacts {
                 overflow-y: overlay;
                 font-size: 14px;
                 margin-top: 8px;
+                height: 90%;
                 p {
                     cursor: pointer;
                     &[data-active='true'] {
-                        color: red;
+                        color: $coral;
+                        font-weight: bold;
                     }
                 }
             }

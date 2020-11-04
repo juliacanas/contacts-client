@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 
 import { AuthContext } from '../../context/auth/authContext';
-import styles from './Login.module.scss';
-import backgroundImage from '../../assets/dan-cristian-padure-Ieq6iLAH-xA-unsplash.jpg'
+import styles from './LoginPage.module.scss';
+import backgroundImage from '../../assets/minimal.jpg'
+
 
 export default function LoginPage() {
     const { register, handleSubmit, errors } = useForm();
@@ -14,14 +15,19 @@ export default function LoginPage() {
     };
     return (
         <div className={styles.container}>
-            <section style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover", width: '60vw'}}/>
+            <section 
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: "cover", width: '70vw'
+                }}
+          />
 
-            <section>
+            <section className={styles.login}>
                 <h1>Contacts App</h1>
-                <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete='off'>
+                <form onSubmit={handleSubmit(onSubmit)} noValidate autoComplete='off' className={styles.form}>
                     <input
+                        className={styles.input}
+                        placeholder='Email'
                         type="email"
                         name="email"
                         ref={register({
@@ -32,24 +38,27 @@ export default function LoginPage() {
                             },
                         })}
                     />
-                    {errors.email && <span>{errors.email.message ? errors.email.message : 'This field is required'}</span>} 
+                    {errors.email && <p className={styles.error}>{errors.email.message ? errors.email.message : 'This field is required'}</p>} 
 
                     <input
+                        className={styles.input}
+                        placeholder='Password'
                         type="password"
                         name="password"
                         ref={register({ required: "Enter your password" })}
                     />
-                    {errors.password && <p className="error">{errors.password.message}</p>}
+                    {errors.password && <p className={styles.error}>{errors.password.message}</p>}
 
-                    <label>
+                    <label className={styles.checkbox}>
                         <input
+                            
                             type='checkbox'
                             name='remember'
                             ref={register}
                         />
                         Remember me
                     </label>
-                    {error !== null ? <div>{error}</div> : <></>}
+                    {error !== null ? <p className={styles.error}>{error}</p> : <></>}
                     <button type="submit">Login</button>
                 </form>
             </section>

@@ -10,11 +10,6 @@ export const contactsReducer = (state, action) => {
                 filteredContacts: orderedContacts,
                 contactsPages: Math.ceil(action.payload.length / 50)
             }
-        case GET_CONTACTS_ERROR:
-            return {
-                ...state,
-                message: action.payload
-            }
         case FILTER_BY_LETTER:
             const filteredByLetter = state.contacts?.filter(contact => {
                 if(action.payload !== '') {
@@ -68,17 +63,20 @@ export const contactsReducer = (state, action) => {
                     ...state,
                     [type]: state[type] + 1,
                 }
-            }
-            if (!next && state[type] > 1) {
+            } else if (!next && state[type] > 1) {
                 return {
                     ...state,
                     [type]: state[type] - 1,
+                }
+            } else {
+                return {
+                    ...state
                 }
             }
         // eslint-disable-next-line no-fallthrough
         case SET_CURRENT_CONNECTION:
             const currentConnection = state.contacts.find(contact => contact.id === action.payload);
-            const newConnections = currentConnection.connections.map(connection => state.contacts.find(contact => contact.id === connection)).sort((a, b) => (a.name > b.name ? 1 : -1));
+            const newConnections = currentConnection?.connections.map(connection => state.contacts.find(contact => contact.id === connection)).sort((a, b) => (a.name > b.name ? 1 : -1));
 
             const contactIndex = state.breadcrumb.findIndex(el => el.id === action.payload);
             let newBreadcrumb = [];

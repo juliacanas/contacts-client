@@ -1,3 +1,11 @@
+$lightGrey: #F2F2F2;
+$purpleyGrey: #9b9b9b;
+$darkGrey: #4E5661;
+$lightBlack:#292929;
+$darkPeach: #E76A60;
+$coral: #D68D63;
+
+
 .main {
     height: 100vh;
     .header {
@@ -7,6 +15,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
+        background-color: $darkGrey;
+        color: $coral;
         .profile {
             display: flex;
             align-items: center;

@@ -6,6 +6,8 @@ import avatar from '../../assets/defaultAvatar.png'
 import SearchBar from '../searchBar/SearchBar';
 import BreadCrumb from '../breadcrumb/BreadCrumb';
 import Pagination from '../pagination/Pagination';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 export default function ConnectionsSection() {
 
@@ -19,20 +21,21 @@ export default function ConnectionsSection() {
             {
                 currentContact || currentConnection ? (
                     <>
-                        <div className={styles.header}>
-                            <div className={styles.connectionName}>
-                                <Image fallbackUrl={avatar} imageUrl={currentConnection ? currentConnection.avatar : currentContact.avatar}/>
-                                <h1>{currentConnection ? currentConnection.name : currentContact.name}</h1>
+                        <div className={styles.containerHeader}>
+                            <div className={styles.header}>
+                                <div className={styles.connectionName}>
+                                    <Image fallbackUrl={avatar} imageUrl={currentConnection ? currentConnection.avatar : currentContact.avatar}/>
+                                    <h1>{currentConnection ? currentConnection.name : currentContact.name}</h1>
+                                </div>
+                                <SearchBar type='connections' className={styles.searchbar} />
                             </div>
-                            <SearchBar type='connections' className={styles.searchbar} />
-                        </div>
-                        <div className={styles.description}>
-                            <p>{currentConnection ? currentConnection.description : currentContact.description}</p>
-                            <div className={styles.links}>
-                                <a href='https://www.facebook.com/'><i className='fab fa-facebook-square' /></a>
-                                <a href='https://www.linkedin.com/'><i className='fab fa-linkedin'/></a>
-                                <a href='https://www.skype.com/en/'><i className='fab fa-skype' /></a>
-                            </div>
+                            <div className={styles.description}>
+                                <p>{currentConnection ? currentConnection.description : currentContact.description}</p>
+                                <div className={styles.links}>
+                                    <FacebookIcon />
+                                    <LinkedInIcon />
+                                </div>
+                            </div>   
                         </div>
                         <BreadCrumb />
                         <div className={styles.list}>
@@ -43,11 +46,13 @@ export default function ConnectionsSection() {
                                 </div>
                             ))}
                         </div>
-                        <Pagination 
-                            type='connectionsCurrentPage'
-                            pages={connectionsPages}
-                            currentPage={connectionsCurrentPage}
-                        />
+                        <div className={styles.pagination}>
+                            <Pagination 
+                                type='connectionsCurrentPage'
+                                pages={connectionsPages}
+                                currentPage={connectionsCurrentPage}
+                            />
+                        </div>
                     </>
                 ) : <p className={styles.noResults}>No contact selected</p>
             }

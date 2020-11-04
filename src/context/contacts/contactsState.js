@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react';
 import {contactsReducer} from './contactsReducer';
 import {ContactsContext} from './contactsContext';
 import { getAll } from '../../api/contacts.api';
-import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
+import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
 
 export const ContactsState = ({ children }) => {
     const initialState = {
@@ -23,16 +23,9 @@ export const ContactsState = ({ children }) => {
     const getContacts = (token) => {
         getAll(token)
             .then(res => {
-                console.log(res)
                 dispatch({
                     type: GET_CONTACTS,
                     payload: res,
-                })
-            })
-            .catch(err => {
-                dispatch({
-                    type: GET_CONTACTS_ERROR,
-                    payload: err
                 })
             })
     }
