@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Contacts App
+It is an application that allows to authenticate a user to access to his contact area. In this area his contacts will appear ordered alphabetically and paginated. The user can filter by initial letter or through the superior searchbar.
+Each contact will show their connections that will appear on the right side, also ordered alphabetically and also with a searchbar to filter them.
+By selecting a contact from this list of connections, their connections will be shown in turn, and so on, the path followed will appear in the breadcrumb being marked in the upper margin of the list.
+The user has the possibility of logging out, entering in the user section in the upper right margin of the screen.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Quick Start
 
-In the project directory, you can run:
+Clone this repo:
 
-### `npm start`
+`$ git clone https://github.com/juliacanas/contacts-client.git`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install all necessary dependencies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`$ npm install`
 
-### `npm test`
+Finally run:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`$ npm start`
 
-### `npm run build`
+# Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+├── public
+├── src
+│   ├── api
+│   |   └── api.js
+│   |   ├── auth.api.js
+│   |   └── contacts.api.js
+│   └── assets
+│   |   ├── defaultAvatar.png
+│   |   └── minimal.jpg
+│   ├── components
+│   |   └── alphabet
+│   |   |   ├── Alphabet.jsx
+│   |   |   └── Alphabet.module.scss
+│   |   ├── breadcrumb
+│   |   |   ├── Breadcrumb.jsx
+│   |   |   └── Breadcrumb.module.scss
+│   |   └── common
+│   |   |   ├── AnonRoute.jsx
+│   |   |   └── PrivateRoute.jsx
+│   |   ├── connections
+│   |   |   ├── Connections.jsx
+│   |   |   └── Connections.module.scss
+│   |   └── image
+│   |   |   ├── Image.jsx
+│   |   |   └── Image.module.scss
+│   |   ├── profileOptions
+│   |   |   ├── ProfileOptions.jsx
+│   |   |   └── ProfileOptions.module.scss
+│   |   └── pagination
+│   |   |   ├── Pagination.jsx
+│   |   |   └── Pagination.module.scss
+│   |   ├── searchBar
+│   |   |   ├── SearchBar.jsx
+│   |   |   └── SearchBar.module.scss
+│   |   └── sidebar
+│   |   |   ├── Sidebar.jsx
+│   |   |   └── Sidebar.module.scss
+│   └── constants
+│   |   └── index.js
+│   ├── context
+│   |   ├── auth
+│   |   |   ├── authContext.js
+│   |   |   ├── authReducer.js
+│   |   |   └── authState.js
+│   |   └── contacts
+│   |   |   ├── contactsContext.js
+│   |   |   ├── contactsReducer.js
+│   |   |   └── contactsState.js
+│   └── pages
+│   |   ├── contacts
+│   |   |   ├── ContactsPage.jsx
+│   |   |   └── ContactsPage.module.scss
+│   |   └── login
+│   |   |   ├── LoginPage.jsx
+│   |   |   └── LoginPage.module.scss
+│   ├── sass
+│   |   └── base.scss
+│   └── App.jsx
+│   ├── index.js
+│   └── index.scss
+├── package.json
+├── package-lock.json
+├── rest.http
+└── server.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
