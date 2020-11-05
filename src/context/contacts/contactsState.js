@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import {contactsReducer} from './contactsReducer';
 import {ContactsContext} from './contactsContext';
 import { getAll } from '../../api/contacts.api';

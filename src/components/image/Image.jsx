@@ -8,6 +8,7 @@ export default function Image({
     extraContent,
 }) {
 
+    // eslint-disable-next-line no-unused-vars
     const [errored, setErrored] = useState(false);
     const [src, setSrc] = useState(imageUrl)
 
@@ -32,9 +33,3 @@ export default function Image({
         </div>
     )
 }
-
-/* Image.propTypes = {
-    imageUrl: PropTypes.string,
-    fallbackUrl: PropTypes.string,
-    extraContent: PropTypes.func,
-}; */

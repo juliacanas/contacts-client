@@ -14,7 +14,7 @@ export const AuthState = ({ children }) => {
         refToken: localStorage.getItem('refreshToken'),
         error: null
     }
-
+    
     const history = useHistory();
     const [state, dispatch] = useReducer(authReducer, initialState); 
 
@@ -34,16 +34,6 @@ export const AuthState = ({ children }) => {
             type: LOGOUT_USER
         })
     }
-
-/*     const getNewToken = () => {
-        refreshToken(state.refToken)
-            .then(res => {
-                dispatch({
-                    type: LOGIN_SUCCESS,
-                    payload: res,
-                })
-            })
-    } */
 
     return (
         <AuthContext.Provider

@@ -1,4 +1,4 @@
-import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CONTACTS_ERROR, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
+import { FILTER_BY_LETTER, FILTER_BY_NAME, GET_CONTACTS, GET_CURRENT_CONTACT, SET_PAGINATION, SET_CURRENT_CONNECTION } from '../../constants';
 
 export const contactsReducer = (state, action) => {
     switch (action.type) {

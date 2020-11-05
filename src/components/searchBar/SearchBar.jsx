@@ -1,4 +1,4 @@
-import { Input, InputAdornment, InputBase } from '@material-ui/core';
+import { Input, InputAdornment } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { ContactsContext } from '../../context/contacts/contactsContext';
 import SearchIcon from '@material-ui/icons/Search';

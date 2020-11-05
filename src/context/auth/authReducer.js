@@ -6,13 +6,13 @@ export const authReducer = (state, action) => {
             const parseJwt = JSON.parse(atob(action.payload.token.split('.')[1]))
             const user = {userId: parseJwt.userId, userName: parseJwt.userName}
             localStorage.setItem('token', action.payload.token);
-            localStorage.setItem('user', user);
+            localStorage.setItem('user', user.userName);
             localStorage.setItem('refreshToken', action.payload.refreshToken)
             return {
                 ...state,
                 token: action.payload.token,
                 refToken: action.payload.refreshToken,
-                user: user,
+                user: localStorage.getItem('user'),
                 loading: false
             }
         case LOGIN_ERROR:
@@ -28,6 +28,7 @@ export const authReducer = (state, action) => {
             }
         case LOGOUT_USER:
             localStorage.removeItem('token');
+            localStorage.removeItem('user');
             localStorage.removeItem('refreshToken')
             return {
                 ...state,

@@ -15,7 +15,8 @@ export default function SideBar() {
 
     useEffect(() => {
         getContacts(localStorage.getItem('token'))
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token]);
 
     const startIndex = (contactsCurrentPage - 1) * 50;
     const contactsPaginated = filteredContacts?.slice(startIndex, startIndex + 50)

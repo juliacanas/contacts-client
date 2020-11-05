@@ -3,7 +3,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styles from './ProfileOptions.module.scss';
 
 export default function ProfileOptions({
-    options
+    options,
+    user,
 }) {
     const [userSectionOpen, setUserSectionOpen] = useState(false);
 
@@ -15,7 +16,7 @@ export default function ProfileOptions({
     return (
         <div className={styles.container}>
             <div onClick={handleToggleMenu} className={styles.userSection}>
-                <p>USERNAME</p>
+            <p>{user.toUpperCase()}</p>
                 <AccountCircleIcon />
             </div>
             {userSectionOpen

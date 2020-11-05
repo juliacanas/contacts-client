@@ -21,4 +21,10 @@ $coral: #D68D63;
             cursor: unset;
         }
     }
+    .arrow {
+        &[data-active='true'] {
+            color: $darkGrey;
+            font-size: 40px;
+        }
+    }
 }
